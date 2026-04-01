@@ -1,0 +1,9 @@
+streamlit
+torch>=2.0.0
+torchvision
+torchaudio
+numpy==1.26.4
+pandas
+matplotlib
+nibabel
+scikit-learn
