@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 The Brain Health Analyzer is an AI-powered web application that predicts a person's brain age using MRI scan data (.nii / .nii.gz files). It compares predicted brain age with actual age to assess brain health and detect potential neurological risks.
-
+### live link: https://brainagepredictor-kmbwyisz9xcf9hibtnvjz5.streamlit.app/
 This system uses Deep Learning (3D CNN) and provides:
 - Brain age prediction
 - Brain Age Gap (BAG)
@@ -45,7 +45,7 @@ Smart classification based on BAG:
 - Gradient-based visualization
 - Highlights important brain regions
 
-### 📄 PDF Report Generation
+### 📄  Report Generation
 - Download complete analysis report
 - Includes prediction, diagnosis, cause, precautions
 
@@ -68,40 +68,7 @@ Smart classification based on BAG:
 
 ---
 
-## 📂 Project Structure
 
-BrainAge_prediction/
-│
-├── app.py
-├── brain_age_model.pth
-├── brain.jpg
-├── requirements.txt
-└── README.md
-
----
-
-## ⚙️ Installation
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/your-username/brain-health-analyzer.git
-cd brain-health-analyzer
-```
-
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## ▶️ Run Application
-
-```bash
-streamlit run app.py
-```
-
----
 
 ## 📦 Requirements
 
@@ -116,37 +83,6 @@ reportlab
 
 ---
 
-## 🧠 Model Architecture
-
-- 3D Convolutional Neural Network  
-- Conv3D + ReLU + MaxPooling  
-- Adaptive Average Pooling  
-- Fully Connected Layers  
-
-Input: 3D MRI volume  
-Output: Predicted Brain Age  
-
----
-
-## 📊 How It Works
-
-1. Upload MRI scan  
-2. Normalize + resize image  
-3. Model predicts brain age  
-4. Calculate Brain Age Gap  
-5. AI detects condition  
-6. Show results + visualization  
-7. Generate PDF report  
-
----
-
-## ⚠️ Disclaimer
-
-- For educational and research purposes only  
-- Not for medical diagnosis  
-- Always consult a doctor  
-
----
 
 ## 🌟 Future Improvements
 
