@@ -220,7 +220,76 @@ if uploaded_file:
     st.write("Cause:", cause)
     st.write("Precautions:")
     st.write(precautions)
+# -------- ADD THIS BELOW YOUR DIAGNOSIS SECTION --------
 
+    st.subheader("🧬 Detailed Disease Insights")
+
+    if "Alzheimer" in diagnosis:
+        st.info("""
+        Disease: Alzheimer’s Disease
+
+        Symptoms:
+        - Memory loss
+        - Confusion
+        - Difficulty in thinking
+
+        Causes:
+        - Neuron degeneration
+        - Age-related brain shrinkage
+
+        Precautions:
+        - Mental exercises
+        - Healthy diet
+        - Regular medical checkup
+        """)
+
+    elif "Cognitive" in diagnosis:
+        st.info("""
+        Condition: Mild Cognitive Impairment
+
+        Symptoms:
+        - Slight memory loss
+        - Reduced focus
+        - Mental fatigue
+
+        Causes:
+        - Stress
+        - Poor sleep
+        - Lifestyle imbalance
+
+        Precautions:
+        - Proper sleep
+        - Meditation
+        - Brain exercises
+        """)
+
+    elif "Healthy" in diagnosis:
+        st.success("""
+        Condition: Healthy Brain
+
+        Indicators:
+        - Strong memory
+        - Good cognitive ability
+
+        Maintain:
+        - Active lifestyle
+        - Balanced diet
+        - Continuous learning
+        """)
+
+    else:
+        st.info("""
+        Condition: Normal Brain Aging
+
+        Explanation:
+        - Natural aging process
+        - Slight decline in speed
+
+        Maintain:
+        - Healthy routine
+        - Physical activity
+        - Regular checkups
+        """)
     # -------- NEW FEATURE --------
     st.subheader("🧬 Detailed Disease Insights")
 
