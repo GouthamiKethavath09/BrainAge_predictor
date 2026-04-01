@@ -46,13 +46,13 @@ def set_bg(image_file):
             border-radius: 10px;
         }}
 
-        /* ✅ Browse button text BLACK */
+        /* Browse button BLACK */
         section[data-testid="stFileUploader"] button {{
             color: black !important;
             font-weight: bold;
         }}
 
-        /* ✅ Download button text BLACK */
+        /* Download button BLACK */
         div.stDownloadButton > button {{
             color: black !important;
             font-weight: bold;
@@ -146,10 +146,12 @@ if uploaded_file:
         st.error("Invalid MRI file")
         st.stop()
 
+    # MRI VIEW
     st.subheader("🧠 MRI Viewer")
     slice_idx = st.slider("Slice", 0, raw_img.shape[2]-1, raw_img.shape[2]//2)
     st.image(raw_img[:, :, slice_idx], clamp=True)
 
+    # MULTI-SLICE
     st.subheader("🧠 Multi-Slice View")
     fig, axes = plt.subplots(2, 5, figsize=(15, 6))
     slices = np.linspace(0, raw_img.shape[2]-1, 10, dtype=int)
@@ -160,6 +162,7 @@ if uploaded_file:
 
     st.pyplot(fig)
 
+    # PREDICTION
     img = torch.tensor(img).unsqueeze(0).unsqueeze(0).float()
 
     with torch.no_grad():
@@ -171,11 +174,13 @@ if uploaded_file:
     st.metric("Predicted Brain Age", round(pred_age, 2))
     st.metric("Brain Age Gap", round(bag, 2))
 
+    # CHART
     st.subheader("📊 Age Comparison")
     fig, ax = plt.subplots()
     ax.bar(["Actual", "Predicted"], [actual_age, pred_age])
     st.pyplot(fig)
 
+    # GRAD CAM
     st.subheader("🔥 Brain Activation Map")
     heatmap = generate_gradcam(model, img)
 
@@ -183,9 +188,9 @@ if uploaded_file:
     ax.imshow(raw_img[:, :, slice_idx], cmap='gray')
     ax.imshow(heatmap[:, :, slice_idx], cmap='jet', alpha=0.5)
     ax.axis('off')
-
     st.pyplot(fig)
 
+    # DIAGNOSIS
     st.subheader("🧾 Brain Health Diagnosis")
 
     if bag > 10:
@@ -193,7 +198,7 @@ if uploaded_file:
         st.error(f"🔴 {diagnosis}")
         cause = "Neuron damage, aging, poor lifestyle"
         precautions = "- Exercise\n- Healthy diet\n- Mental activities\n- Consult doctor"
-        
+
     elif bag > 5:
         diagnosis = "Mild Cognitive Decline"
         st.warning(f"🟠 {diagnosis}")
@@ -216,6 +221,69 @@ if uploaded_file:
     st.write("Precautions:")
     st.write(precautions)
 
+    # -------- NEW FEATURE --------
+    st.subheader("🧬 Detailed Disease Insights")
+
+    if "Alzheimer" in diagnosis:
+        st.info("""
+        Disease: Alzheimer’s Disease
+
+        Symptoms:
+        - Memory loss
+        - Confusion
+        - Difficulty in thinking
+
+        Causes:
+        - Neuron degeneration
+        - Age-related brain shrinkage
+
+        Precautions:
+        - Mental exercises
+        - Healthy diet
+        - Regular checkups
+        """)
+
+    elif "Cognitive" in diagnosis:
+        st.info("""
+        Condition: Mild Cognitive Impairment
+
+        Symptoms:
+        - Slight memory loss
+        - Reduced focus
+
+        Causes:
+        - Stress
+        - Poor sleep
+
+        Precautions:
+        - Sleep well
+        - Meditation
+        """)
+
+    elif "Healthy" in diagnosis:
+        st.success("""
+        Condition: Healthy Brain
+
+        Indicators:
+        - Strong memory
+        - Good cognition
+
+        Maintain:
+        - Active lifestyle
+        """)
+
+    else:
+        st.info("""
+        Condition: Normal Aging
+
+        Explanation:
+        - Natural aging
+
+        Maintain:
+        - Healthy routine
+        """)
+
+    # FINAL REPORT
     st.subheader("📌 Final Report")
 
     st.write(f"""
