@@ -359,11 +359,12 @@ ax.set_xlabel("Brain Age Gap")
 ax.set_ylabel("Risk Level")
 ax.set_title("Risk Trend")
 st.pyplot(fig)      
-
-    
-    st.download_button(
+st.download_button(
         label="📄 Download Report",
         data=report,
         file_name="brain_health_report.txt",
         mime="text/plain"
     )
+
+    
+    
