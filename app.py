@@ -236,9 +236,36 @@ Associated Brain Diseases:
 {diseases}
 """
 
-    
-# -------- ADD THIS BELOW YOUR FINAL REPORT SECTION --------
+    # -------- NEW: RISK FACTORS --------
+    st.subheader("⚠️ Risk Factors")
 
+    if bag > 5:
+        st.warning("""
+        - High stress levels  
+        - Genetic predisposition  
+        - Poor sleep cycle  
+        - Unhealthy diet  
+        - Lack of mental activity  
+        - Early neurodegenerative changes  
+        """)
+
+    elif bag < -5:
+        st.success("""
+        - Strong genetics  
+        - Active brain usage  
+        - Good lifestyle  
+        - Balanced nutrition  
+        - Regular mental exercises  
+        """)
+
+    else:
+        st.info("""
+        - Normal aging factors  
+        - Daily routine impact  
+        - Mild lifestyle variations  
+        """)
+
+    # -------- EXISTING EXTRA FEATURES (UNCHANGED) --------
     st.subheader("🧠 Brain Age Gap Interpretation")
 
     if bag > 5:
@@ -275,32 +302,12 @@ Associated Brain Diseases:
         👉 Indicates normal brain aging.
         """)
 
-    # -------- GRAPH 1: HEALTH INTERPRETATION --------
-    st.subheader("📊 Brain Health Visualization")
-
-    fig, ax = plt.subplots()
-    ax.bar(["Actual Age", "Predicted Age"], [actual_age, pred_age])
-    ax.set_title("Brain Age Comparison")
-    st.pyplot(fig)
-
-    # -------- GRAPH 2: TREND GRAPH --------
-    st.subheader("📈 Brain Aging Trend")
-
-    ages = [actual_age - 10, actual_age, actual_age + 10]
-    predicted = [pred_age - 5, pred_age, pred_age + 5]
-
-    fig, ax = plt.subplots()
-    ax.plot(ages, predicted, marker='o')
-    ax.set_xlabel("Age")
-    ax.set_ylabel("Brain Age Trend")
-    ax.set_title("Brain Aging Projection")
-    st.pyplot(fig)
     st.download_button(
         label="📄 Download Report",
         data=report,
         file_name="brain_health_report.txt",
         mime="text/plain"
-    )  
+    )
 
 
     
