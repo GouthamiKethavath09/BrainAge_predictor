@@ -242,3 +242,61 @@ Associated Brain Diseases:
         file_name="brain_health_report.txt",
         mime="text/plain"
     )
+# -------- ADD THIS BELOW YOUR FINAL REPORT SECTION --------
+
+    st.subheader("🧠 Brain Age Gap Interpretation")
+
+    if bag > 5:
+        st.warning("""
+        ⚠️ Brain age is higher than actual age.
+
+        Possible Reasons:
+        - Chronic Stress
+        - Poor Sleep Cycle
+        - Genetic Factors
+        - Early Neurodegenerative Changes
+        - Unhealthy Lifestyle
+
+        👉 Indicates faster brain aging and potential risk.
+        """)
+
+    elif bag < -5:
+        st.success("""
+        ✅ Brain age is lower than actual age.
+
+        Possible Reasons:
+        - Healthy Lifestyle
+        - Good Cognitive Activity
+        - Strong Genetics
+        - Proper Sleep & Nutrition
+
+        👉 Indicates strong and healthy brain condition.
+        """)
+
+    else:
+        st.info("""
+        ℹ️ Brain age is close to actual age.
+
+        👉 Indicates normal brain aging.
+        """)
+
+    # -------- GRAPH 1: HEALTH INTERPRETATION --------
+    st.subheader("📊 Brain Health Visualization")
+
+    fig, ax = plt.subplots()
+    ax.bar(["Actual Age", "Predicted Age"], [actual_age, pred_age])
+    ax.set_title("Brain Age Comparison")
+    st.pyplot(fig)
+
+    # -------- GRAPH 2: TREND GRAPH --------
+    st.subheader("📈 Brain Aging Trend")
+
+    ages = [actual_age - 10, actual_age, actual_age + 10]
+    predicted = [pred_age - 5, pred_age, pred_age + 5]
+
+    fig, ax = plt.subplots()
+    ax.plot(ages, predicted, marker='o')
+    ax.set_xlabel("Age")
+    ax.set_ylabel("Brain Age Trend")
+    ax.set_title("Brain Aging Projection")
+    st.pyplot(fig)
