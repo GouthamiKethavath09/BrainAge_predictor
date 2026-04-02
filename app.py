@@ -295,7 +295,7 @@ Associated Brain Diseases:
     predicted = [pred_age - 5, pred_age, pred_age + 5]
 
     fig, ax = plt.subplots()
-    # -------- AI MULTI-CLASS DISEASE CLASSIFIER --------
+  # -------- AI MULTI-CLASS DISEASE CLASSIFIER --------
 st.subheader("🧠 AI Multi-Disease Prediction")
 
 # ---- Risk Score Calculation ----
@@ -378,9 +378,4 @@ This prediction is based on:
 - Brain Age Gap
 - Structural brain changes
 - Risk pattern analysis
-""")
-    ax.plot(ages, predicted, marker='o')
-    ax.set_xlabel("Age")
-    ax.set_ylabel("Brain Age Trend")
-    ax.set_title("Brain Aging Projection")
-    st.pyplot(fig)
+""")  
