@@ -295,76 +295,13 @@ Associated Brain Diseases:
     ax.set_ylabel("Brain Age Trend")
     ax.set_title("Brain Aging Projection")
     st.pyplot(fig)
-    # -------- LIVE RISK METER --------
-st.subheader("🚨 Brain Risk Meter")
-
-# Convert BAG → Risk %
-risk_score = min(max((bag + 20) * 2.5, 0), 100)   # normalized
-
-# Display progress bar
-st.progress(int(risk_score))
-
-# Show numeric value
-st.write(f"Risk Level: {round(risk_score,2)} %")
-
-# -------- HEALTH SCORE --------
-st.subheader("💚 Brain Health Score")
-
-health_score = 100 - risk_score
-st.progress(int(health_score))
-st.write(f"Health Score: {round(health_score,2)} / 100")
-
-# -------- RISK INTERPRETATION --------
-st.subheader("🧠 Risk Interpretation")
-
-if risk_score > 75:
-    st.error("""
-    🔴 HIGH RISK
-
-    - Strong indication of brain aging
-    - Possible neurodegenerative disorders
-    - Immediate lifestyle & medical attention needed
-    """)
-
-elif risk_score > 50:
-    st.warning("""
-    🟠 MODERATE RISK
-
-    - Early cognitive decline possible
-    - Stress / sleep / lifestyle issues
-    """)
-
-elif risk_score > 25:
-    st.info("""
-    🟡 LOW RISK
-
-    - Slight variation in brain aging
-    - Maintain healthy habits
-    """)
-
-else:
-    st.success("""
-    🟢 HEALTHY
-
-    - Brain functioning optimally
-    - Strong cognitive health
-    """)
-
-# -------- EXTRA GRAPH (RISK vs AGE GAP) --------
-st.subheader("📊 Risk vs Brain Age Gap")
-
-fig, ax = plt.subplots()
-ax.plot([bag-5, bag, bag+5], [risk_score-10, risk_score, risk_score+10], marker='o')
-ax.set_xlabel("Brain Age Gap")
-ax.set_ylabel("Risk Level")
-ax.set_title("Risk Trend")
-st.pyplot(fig)      
-st.download_button(
+    st.download_button(
         label="📄 Download Report",
         data=report,
         file_name="brain_health_report.txt",
         mime="text/plain"
-    )
+    )  
+
 
     
     
